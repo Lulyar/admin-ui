@@ -1,18 +1,25 @@
 import { useState } from "react";
 
 function UserCard(props) {
-  const { name, email, street, city } = props;
+  const { name, email, street, city, ...rest } = props;
   const [clicked, setClicked] = useState(false);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
-      <h2 className="text-xl font-semibold text-gray-800 mb-2">{name}</h2>
-      <p className="text-gray-600">
-        <span className="font-medium">Email:</span> {email}
-      </p>
-      <p className="text-gray-600">
-        <span className="font-medium">Address:</span> {street}, {city}
-      </p>
+    <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow flex flex-col justify-between">
+      <div>
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">{name}</h2>
+        <p className="text-gray-600">
+          <span className="font-medium">Email:</span> {email}
+        </p>
+        <p className="text-gray-600">
+          <span className="font-medium">Address:</span> {street}, {city}
+        </p>
+        {rest.phone && (
+          <p className="text-gray-600">
+            <span className="font-medium">Phone:</span> {rest.phone}
+          </p>
+        )}
+      </div>
       <button
         onClick={() => setClicked(true)}
         className={`${
